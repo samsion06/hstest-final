@@ -15,18 +15,17 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
     @Bean
-    public Docket aip(){
+    public Docket api(){
         return  new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .pathMapping("/")
                 .select()
                 .paths(PathSelectors.regex("/.*"))
                 .build();
-
-
     }
+
     private ApiInfo apiInfo(){
-        return  new ApiInfoBuilder().title("我的接口文档")
+        return  new ApiInfoBuilder().title("中台用户服务")
                 .contact(new Contact("zhouxiongxin","","424468708@qq.com"))
                 .description("这是我的swaggerui")
                 .version("1.0.0.0")
