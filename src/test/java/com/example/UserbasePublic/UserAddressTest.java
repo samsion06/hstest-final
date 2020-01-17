@@ -49,7 +49,7 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             httpClient=HttpClients.createDefault();
             //添加收货地址
             uri = new URI(HttpConfigUtil.scheme, HttpConfigUtil.url, "/address/add","");
-            post = new HttpPost(uri);
+            post = new HttpPost(uri);     //这里传一个obj
             byteArrayEntity = DataTransferUtil.userAddressInfoAddRequest(userAddressInfo.getChannelUserId(),channelId,userAddressInfo.getAddress());
             post.setEntity(byteArrayEntity);
             post.setHeader("Content-Type", "application/x-protobuf");
@@ -109,6 +109,7 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             post.setHeader("Content-Type", "application/x-protobuf");
             response = httpClient.execute(post);
             String result = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressPage.class);
+            Reporter.log("fuck");
 //          System.out.println("截取的字符串有："+JsonPath.read(result,"$.list[1].addressId"));
 //          boolean flag=true;
 //          try{
