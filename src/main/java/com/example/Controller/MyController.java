@@ -32,7 +32,8 @@ public class MyController {
 
     @RequestMapping(value = "/queryUserAddressByPage",method = RequestMethod.POST)
     @ApiOperation(value = "queryUserAddressByPage",httpMethod = "POST")
-    public void queryUserAddressByPageTest(UserAddressInfo userAddressInfo){
+    public String queryUserAddressByPageTest(UserAddressInfo userAddressInfo){
+        String result = null;
         try{
             httpClient = HttpClients.createDefault();
             uri = new URI(HttpConfigUtil.scheme, HttpConfigUtil.url, "/address/query", null);
@@ -41,7 +42,7 @@ public class MyController {
             post.setEntity(byteArrayEntity);
             post.setHeader("Content-Type", "application/x-protobuf");
             response = httpClient.execute(post);
-            String result = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressPage.class);
+            result = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressPage.class);
             Reporter.log("fuck");
 //          System.out.println("截取的字符串有："+JsonPath.read(result,"$.list[1].addressId"));
 //          boolean flag=true;
@@ -56,7 +57,6 @@ public class MyController {
         }catch (Exception e){
             e.printStackTrace();
         }
+        return result;
     }
-
-
 }
