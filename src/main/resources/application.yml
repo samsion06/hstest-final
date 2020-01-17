@@ -1,12 +1,24 @@
-##DBconfig
-#spring:
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://drdshhid9174116j.drds.aliyuncs.com:3306/singleuser?
-#    username: singleuser
-#    password: Drgou_druser123
-#
-#useUnicode: true&autoReconnect=true&allowMultiQueries=true
-#
-#mybatis:
-#  mapper-locations: classpath:mapper/*Mapper.xml
+#DBconfig
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://drdshhid9174116j.drds.aliyuncs.com:3306/singleuser?
+    username: singleuser
+    password: Drgou_druser123
+
+    dubbo:
+      application:
+        name: provider #应用名
+      registry:
+        address: zookeeper://192.168.174.100 #zookeeper地址
+        port: 2181 #提供注册的端口
+      scan: com.example.controller
+
+
+
+useUnicode: true&autoReconnect=true&allowMultiQueries=true
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+

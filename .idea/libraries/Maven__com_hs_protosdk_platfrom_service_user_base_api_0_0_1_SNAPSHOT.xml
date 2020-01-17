@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: com.hs.protosdk.platfrom-service:user-base-api:0.0.1-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/hs/protosdk/platfrom-service/user-base-api/0.0.1-SNAPSHOT/user-base-api-0.0.1-20200109.084456-78.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/hs/protosdk/platfrom-service/user-base-api/0.0.1-SNAPSHOT/user-base-api-0.0.1-20200115.082242-94.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/com/hs/protosdk/platfrom-service/user-base-api/0.0.1-SNAPSHOT/user-base-api-0.0.1-20200109.084456-78-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/hs/protosdk/platfrom-service/user-base-api/0.0.1-SNAPSHOT/user-base-api-0.0.1-20200115.082242-94-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/hs/protosdk/platfrom-service/user-base-api/0.0.1-SNAPSHOT/user-base-api-0.0.1-20200109.084456-78-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/hs/protosdk/platfrom-service/user-base-api/0.0.1-SNAPSHOT/user-base-api-0.0.1-20200115.082242-94-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

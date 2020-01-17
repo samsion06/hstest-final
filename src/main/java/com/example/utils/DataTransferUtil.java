@@ -270,8 +270,6 @@ public class DataTransferUtil {
         return bytes;
     }
 
-
-
     /**
      * 支付宝中心
      */
