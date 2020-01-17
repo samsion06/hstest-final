@@ -36,10 +36,10 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
     private static HttpResponse response;
 
 
-    @Test(description = "1.添加收货地址" +
-            "            2.获取收货地址" +
-            "            3.更新收货地址"+
-            "            4.删除收货地址" )
+//    @Test(description = "1.添加收货地址" +
+//            "            2.获取收货地址" +
+//            "            3.更新收货地址"+
+//            "            4.删除收货地址" )
     public void addressCURDTest(){
         UserAddressInfo userAddressInfo=new UserAddressInfo();
         userAddressInfo.setAddress(DataUtils.getRandomString(9));//随机地址
@@ -107,7 +107,15 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             post.setHeader("Content-Type", "application/x-protobuf");
             response = httpClient.execute(post);
             String result = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressPage.class);
-            System.out.println("截取的字符串有："+JsonPath.read(result,"$.list[1].addressId"));
+//            System.out.println("截取的字符串有："+JsonPath.read(result,"$.list[1].addressId"));
+//            boolean flag=true;
+//            try{
+//                JsonPath.read(result,"$.list[1].addressId");
+//            }catch (Exception e){
+//                 flag=false;
+//                e.printStackTrace();
+//            }
+//            Assert.assertTrue(flag,"无法获取字段");
 
 
         }catch (Exception e){
