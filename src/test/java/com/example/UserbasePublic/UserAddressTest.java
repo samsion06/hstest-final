@@ -4,6 +4,7 @@ import com.example.domain.UserAddressInfo;
 import com.example.mapper.UserBaseInfoMapper;
 import com.example.utils.*;
 import com.hs.user.base.proto.UserAddressServiceProto;
+import com.jayway.jsonpath.JsonPath;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
@@ -52,11 +54,10 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             post.setEntity(byteArrayEntity);
             post.setHeader("Content-Type", "application/x-protobuf");
             HttpResponse response = httpClient.execute(post);
-            //返回对象信息得话已经是从数据库取了一次了,不用数据库再判断
-            String addaddressResponseMsg = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressInfoResponse.class);
-            //截取addressId传入下一个接口
-            String addressId = DataUtils.substring(addaddressResponseMsg, "addressId:\"", 16, "\",", 0);
-
+            //json path截取返回值传入下一个字段
+            String addressResponseMsg = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressInfoResponse.class);
+            //addressResponseMsg返回json的字符串： com.jayway.jsonpath.PathNotFoundException: No results for path: $['list'][1]['addressId']
+            String addressId=JsonPath.read(addressResponseMsg,"$.addressId"); //$.list[0].字段名字
             //获取收货地址
             httpClient = HttpClients.createDefault();
             uri = new URI(HttpConfigUtil.scheme, HttpConfigUtil.url, "/address/getByAddressId","");
@@ -105,13 +106,16 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             post.setEntity(byteArrayEntity);
             post.setHeader("Content-Type", "application/x-protobuf");
             response = httpClient.execute(post);
-            CheckReponseResult.AssertResponses(response,UserAddressServiceProto.UserAddressPage.class);
+            String result = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressPage.class);
+            System.out.println("截取的字符串有："+JsonPath.read(result,"$.list[1].addressId"));
+
+
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    @Test(description ="6.获取省市区域树area")
+    //@Test(description ="6.获取省市区域树area")
     public void  getSysSubAreaTest(){
         try{
             httpClient = HttpClients.createDefault();
@@ -127,7 +131,7 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
         }
     }
 
-    @Test(description ="7.获取省市区域树tree")
+    //@Test(description ="7.获取省市区域树tree")
     public void  getSysAreaTreeTest(){
         try{
             httpClient = HttpClients.createDefault();

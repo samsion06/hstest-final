@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Suite" parallel="false">
 
+<!--    <test name="微信中心">-->
+<!--        <classes>-->
+<!--            <class name="com.example.UserbasePublic.UserWeChatTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="微信中心">
-        <classes>
-            <class name="com.example.UserbasePublic.UserWeChatTest"/>
-        </classes>
-    </test>
 
-
-    <test name="用户中心">
-        <classes>
-            <class name="com.example.UserbasePublic.UserbaseTest"/>
-        </classes>
-    </test>
+<!--    <test name="用户中心">-->
+<!--        <classes>-->
+<!--            <class name="com.example.UserbasePublic.UserbaseTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
 
     <test name="收货地址">
@@ -22,35 +21,35 @@
         </classes>
     </test>
 
-        <test name="支付宝中心">
-            <classes>
-                <class name="com.example.UserbasePublic.UseraliPayTest"/>
-            </classes>
-        </test>
+<!--        <test name="支付宝中心">-->
+<!--            <classes>-->
+<!--                <class name="com.example.UserbasePublic.UseraliPayTest"/>-->
+<!--            </classes>-->
+<!--        </test>-->
 
-    <test name="淘宝中心">
-        <classes>
-            <class name="com.example.UserbasePublic.UserTaobaoTest"/>
-        </classes>
-    </test>
+<!--    <test name="淘宝中心">-->
+<!--        <classes>-->
+<!--            <class name="com.example.UserbasePublic.UserTaobaoTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="用户国际手机区号中心">
-            <classes>
-                <class name="com.example.UserbasePublic.UserMobileAreaTest"/>
-            </classes>
-    </test>
+<!--    <test name="用户国际手机区号中心">-->
+<!--            <classes>-->
+<!--                <class name="com.example.UserbasePublic.UserMobileAreaTest"/>-->
+<!--            </classes>-->
+<!--    </test>-->
 
-    <test name="团长关系信息">
-            <classes>
-                <class name="com.example.UserbasePublic.UserTeamRelationTest"/>
-            </classes>
-    </test>
+<!--    <test name="团长关系信息">-->
+<!--            <classes>-->
+<!--                <class name="com.example.UserbasePublic.UserTeamRelationTest"/>-->
+<!--            </classes>-->
+<!--    </test>-->
 
-    <test name="团长信息">
-            <classes>
-                <class name="com.example.UserbasePublic.BuFengZhuang.UserTeamInfoTest"/>
-            </classes>
-    </test>
+<!--    <test name="团长信息">-->
+<!--            <classes>-->
+<!--                <class name="com.example.UserbasePublic.BuFengZhuang.UserTeamInfoTest"/>-->
+<!--            </classes>-->
+<!--    </test>-->
 
 
     <!--testng执行方式：https://www.cnblogs.com/926xiuxiu/p/9055846.html-->
