@@ -96,7 +96,7 @@
     </selectKey>
     insert into user_team_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
+      <if test="id != null"> <!--这里的作用就是传过来的值如果id是空，在拼sql的时候就不加上id-->
         id,
       </if>
       <if test="realName != null and realName != ''">
