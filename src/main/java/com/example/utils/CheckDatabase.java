@@ -17,8 +17,6 @@ public class CheckDatabase {
     private static UserRleationInfo dataBaseUserRleationInfo;
     private static HsrjUserInfo dataBaseHsrjUserInfo;
 
-
-
     //数据库检查
     public static void CheckDatabaseUserUserWeChatInfo(UserBaseInfoMapper userBaseInfoMapper,String method, UserWeChatInfo userWeChatInfo) {
         switch (method) {
