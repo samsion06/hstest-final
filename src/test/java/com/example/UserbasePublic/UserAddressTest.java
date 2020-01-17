@@ -57,7 +57,9 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             //json path截取返回值传入下一个字段
             String addressResponseMsg = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressInfoResponse.class);
             //addressResponseMsg返回json的字符串： com.jayway.jsonpath.PathNotFoundException: No results for path: $['list'][1]['addressId']
+            //可以参考分页列表的方法
             String addressId=JsonPath.read(addressResponseMsg,"$.addressId"); //$.list[0].字段名字
+
             //获取收货地址
             httpClient = HttpClients.createDefault();
             uri = new URI(HttpConfigUtil.scheme, HttpConfigUtil.url, "/address/getByAddressId","");
@@ -107,17 +109,16 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             post.setHeader("Content-Type", "application/x-protobuf");
             response = httpClient.execute(post);
             String result = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressPage.class);
-//            System.out.println("截取的字符串有："+JsonPath.read(result,"$.list[1].addressId"));
-//            boolean flag=true;
-//            try{
-//                JsonPath.read(result,"$.list[1].addressId");
+//          System.out.println("截取的字符串有："+JsonPath.read(result,"$.list[1].addressId"));
+//          boolean flag=true;
+//          try{
+//              JsonPath.read(result,"$.list[1].addressId");
+//              JsonPath.read(result,"$.list[1].addressId");
 //            }catch (Exception e){
 //                 flag=false;
 //                e.printStackTrace();
 //            }
 //            Assert.assertTrue(flag,"无法获取字段");
-
-
         }catch (Exception e){
             e.printStackTrace();
         }
