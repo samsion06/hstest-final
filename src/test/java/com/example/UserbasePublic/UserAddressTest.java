@@ -52,7 +52,7 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             //添加收货地址
             uri = new URI(HttpConfigUtil.scheme, HttpConfigUtil.url, "/address/add","");
             post = new HttpPost(uri);                                    //这里传一个obj
-            byteArrayEntity = DataTransferUtil.userAddressInfoAddRequest(userAddressInfo.getChannelUserId(),channelId,userAddressInfo.getAddress());
+            byteArrayEntity = DataTransferUtil.userAddressInfoAddRequest(userAddressInfo);
             post.setEntity(byteArrayEntity);
             post.setHeader("Content-Type", "application/x-protobuf");
             HttpResponse response = httpClient.execute(post);
@@ -67,7 +67,7 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             httpClient = HttpClients.createDefault();
             uri = new URI(HttpConfigUtil.scheme, HttpConfigUtil.url, "/address/getByAddressId","");
             post = new HttpPost(uri);
-            byteArrayEntity = DataTransferUtil.userAddressRequest(userAddressInfo.getChannelUserId(),channelId,addressId);
+            byteArrayEntity = DataTransferUtil.userAddressRequest(userAddressInfo);
             post.setEntity(byteArrayEntity);
             post.setHeader("Content-Type", "application/x-protobuf");
             response = httpClient.execute(post);
@@ -114,7 +114,6 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             post.setHeader("Content-Type", "application/x-protobuf");
             response = httpClient.execute(post);
             String result = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressPage.class);
-
             JSONObject jsonObject=new JSONObject(result);
             //先比对长度，再比对每一个值是否相同
             System.out.println(jsonObject.length());
@@ -159,7 +158,6 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             post.setHeader("Content-Type", "application/x-protobuf");
             response = httpClient.execute(post);
             CheckReponseResult.AssertResponses(response,UserAddressServiceProto.SysAreaNodeTreeResponse.class);
-
         }catch (Exception e){
             e.printStackTrace();
         }

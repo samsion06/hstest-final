@@ -325,22 +325,21 @@ public class DataTransferUtil {
      */
 
     //添加用户收货地址
-    public static ByteArrayEntity userAddressInfoAddRequest(String channelUserId, Integer channelId, String address){
+    public static ByteArrayEntity userAddressInfoAddRequest(UserAddressInfo addressInfo){
         UserAddressServiceProto.UserAddressInfoAddRequest.Builder builder=UserAddressServiceProto.UserAddressInfoAddRequest.newBuilder();
-        builder.setChannelUserId(channelUserId);
-        builder.setChannelId(channelId);
-        builder.setAddress(address);
+        builder.setChannelUserId(addressInfo.getChannelUserId());
+        builder.setChannelId(1);
+        builder.setAddress(addressInfo.getAddress());
         ByteArrayEntity bytes=new ByteArrayEntity(builder.build().toByteArray());
         Reporter.log("添加用户收货地址_"+incomeMessage+builder+ "}");
         return bytes;
     }
     //获取用户收货地址
-    public static ByteArrayEntity userAddressRequest(String channelUserId, Integer channelId, String addressId){
+    public static ByteArrayEntity userAddressRequest(UserAddressInfo addressInfo){
         UserAddressServiceProto.UserAddressRequest.Builder builder=UserAddressServiceProto.UserAddressRequest.newBuilder();
-        builder.setChannelUserId(channelUserId);
-        builder.setChannelId(channelId);
-        builder.setAddressId(addressId);
-        System.out.println(builder);
+        builder.setChannelUserId(addressInfo.getChannelUserId());
+        builder.setChannelId(1);
+        builder.setAddressId(addressInfo.getAddressId());
         ByteArrayEntity bytes=new ByteArrayEntity(builder.build().toByteArray());
         Reporter.log("获取用户收货地址_"+incomeMessage+builder+ "}");
         return bytes;
@@ -388,7 +387,7 @@ public class DataTransferUtil {
         builder.setPageNum(1);
         builder.setPageSize(1);
         ByteArrayEntity bytes=new ByteArrayEntity(builder.build().toByteArray());
-        Reporter.log("分页查询户收货地址列表_"+incomeMessage+builder+ "}");
+        DataUtils.lopParam("分页查询户收货地址列表",builder);
         return bytes;
     }
     //获取省市区域树

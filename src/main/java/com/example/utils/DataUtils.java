@@ -1,5 +1,6 @@
 package com.example.utils;
 
+import com.hs.user.base.proto.UserBaseServiceProto;
 import org.testng.Reporter;
 
 import java.util.Random;
@@ -43,6 +44,10 @@ public class DataUtils {
 
     public static void logResponse(String response){
         Reporter.log("返回值:["+response+"]");
+    }
+
+    public static void lopParam(String interfaceName, com.google.protobuf.GeneratedMessageV3.Builder<?> builder){
+        Reporter.log(interfaceName+"_传入参数：{"+builder+"}");
     }
 
     public static String getRandomChannelUserId(Integer length){
