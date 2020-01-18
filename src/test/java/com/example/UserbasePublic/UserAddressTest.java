@@ -10,6 +10,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -56,6 +58,7 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             HttpResponse response = httpClient.execute(post);
             //json path截取返回值传入下一个字段
             String addressResponseMsg = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressInfoResponse.class);
+            //先比对长度，再比对细节
             //addressResponseMsg返回json的字符串： com.jayway.jsonpath.PathNotFoundException: No results for path: $['list'][1]['addressId']
             //可以参考分页列表的方法
             String addressId=JsonPath.read(addressResponseMsg,"$.addressId"); //$.list[0].字段名字
@@ -100,16 +103,21 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
 
     @Test(description ="5.分页查询用户收货地址列表")
     public void queryUserAddressByPageTest(){
+        UserAddressInfo userAddressInfo=new UserAddressInfo();
+        userAddressInfo.setChannelUserId("17702015334");
         try{
             httpClient = HttpClients.createDefault();
             uri = new URI(HttpConfigUtil.scheme, HttpConfigUtil.url, "/address/query", null);
             post = new HttpPost(uri);
-            byteArrayEntity = DataTransferUtil.userAddressPageRequest("17702015334",channelId,1,1);
+            byteArrayEntity = DataTransferUtil.userAddressPageRequest(userAddressInfo);
             post.setEntity(byteArrayEntity);
             post.setHeader("Content-Type", "application/x-protobuf");
             response = httpClient.execute(post);
             String result = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressPage.class);
-            Reporter.log("fuck");
+
+            JSONObject jsonObject=new JSONObject(result);
+            System.out.println(jsonObject.length());
+            //result="{\"total\": 1,\"pageSize\": 1,\"pageNum\": 1,\"pages\": 1,\"list\": [{\"addressId\": \"774195ceb7ce455b95c69d2beb1f5723\",\"userName\": \"xiaoming\",\"address\": \"广州海珠区你老母2号\",\"createTime\": 1575447369000,\"updateTime\": 1575531730000}]}";
 //          System.out.println("截取的字符串有："+JsonPath.read(result,"$.list[1].addressId"));
 //          boolean flag=true;
 //          try{
@@ -171,40 +179,7 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
+}
 
 
 

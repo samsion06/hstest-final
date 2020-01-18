@@ -1,5 +1,6 @@
 package com.example.utils;
 
+import com.example.domain.UserAddressInfo;
 import com.example.domain.UserTeamInfo;
 import com.google.common.collect.Lists;
 import com.hs.productservice.api.proto.getdetailbyid.ProductServiceApiGetDetailById;
@@ -380,12 +381,12 @@ public class DataTransferUtil {
         return bytes;
     }
     //分页查询户收货地址列表
-    public static ByteArrayEntity userAddressPageRequest(String channelUserId, Integer channelId, Integer pageSize, Integer pageNum){
+    public static ByteArrayEntity userAddressPageRequest(UserAddressInfo addressInfo){
         UserAddressServiceProto.UserAddressPageRequest.Builder builder=UserAddressServiceProto.UserAddressPageRequest.newBuilder();
-        builder.setChannelUserId(channelUserId);
-        builder.setChannelId(channelId);
-        builder.setPageNum(pageNum);
-        builder.setPageSize(pageSize);
+        builder.setChannelUserId(addressInfo.getChannelUserId());
+        builder.setChannelId(1);
+        builder.setPageNum(1);
+        builder.setPageSize(1);
         ByteArrayEntity bytes=new ByteArrayEntity(builder.build().toByteArray());
         Reporter.log("分页查询户收货地址列表_"+incomeMessage+builder+ "}");
         return bytes;

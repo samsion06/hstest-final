@@ -89,9 +89,10 @@ public class CheckReponseResult {
         ResultResponse.ResultSet resp = ResultResponse.ResultSet.parseFrom(response.getEntity().getContent());
         Assert.assertEquals(ResultResponse.ResponseCode.RESP_CODE_SUCCESS,resp.getCode() );
         Assert.assertTrue(resp.getData().is(clazz));
+        //System.out.println("非json格式："+resp.getData().unpack(clazz));
         //将返回内容解析成json字符串形式返回
         resultContent = jsonFormat.printToString(resp.getData().unpack(clazz));
-        System.out.println(resultContent);
+        System.out.println("jsonb格式："+resultContent);
         //记录结果
         Reporter.log(result+resultContent+"]");
         return  resultContent;
