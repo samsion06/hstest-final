@@ -22,6 +22,8 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 @SpringBootTest
 public class UserAddressTest extends AbstractTestNGSpringContextTests {
@@ -58,7 +60,7 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             HttpResponse response = httpClient.execute(post);
             //json path截取返回值传入下一个字段
             String addressResponseMsg = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressInfoResponse.class);
-            //先比对长度，再比对细节。 list的话可以比较length
+            //1.先比对长度，再比对细节。 list的话可以比较length
             //addressResponseMsg返回json的字符串： com.jayway.jsonpath.PathNotFoundException: No results for path: $['list'][1]['addressId']
             //可以参考分页列表的方法
             String addressId=JsonPath.read(addressResponseMsg,"$.addressId"); //$.list[0].字段名字
@@ -114,9 +116,18 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             post.setHeader("Content-Type", "application/x-protobuf");
             response = httpClient.execute(post);
             String result = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressPage.class);
-            JSONObject jsonObject=new JSONObject(result);
+            //2.预期结果和实际结果对比
+            Map map=new HashMap();
+            map.put("fuck","fuck");
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("total",1);
+            jsonObject.put("pageSize",1);
+            jsonObject.put("pageNum",1);
+            jsonObject.put("list",map);
+            System.out.println(jsonObject.length());
             //先比对长度，再比对每一个值是否相同
             System.out.println(jsonObject.length());
+
             //result="{\"total\": 1,\"pageSize\": 1,\"pageNum\": 1,\"pages\": 1,\"list\": [{\"addressId\": \"774195ceb7ce455b95c69d2beb1f5723\",\"userName\": \"xiaoming\",\"address\": \"广州海珠区你老母2号\",\"createTime\": 1575447369000,\"updateTime\": 1575531730000}]}";
 //          System.out.println("截取的字符串有："+JsonPath.read(result,"$.list[1].addressId"));
 //          boolean flag=true;
