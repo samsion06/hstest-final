@@ -116,7 +116,7 @@ public class UserAddressTest extends AbstractTestNGSpringContextTests {
             post.setHeader("Content-Type", "application/x-protobuf");
             response = httpClient.execute(post);
             String result = CheckReponseResult.AssertResponses(response, UserAddressServiceProto.UserAddressPage.class);
-            //2.预期结果和实际结果对比
+            //2.预期结果和实际结果对比,查的需要自定义预期结果进行比对
             Map map=new HashMap();
             map.put("fuck","fuck");
             JSONObject jsonObject=new JSONObject();
