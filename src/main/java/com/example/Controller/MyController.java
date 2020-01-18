@@ -38,7 +38,7 @@ public class MyController {
             httpClient = HttpClients.createDefault();
             uri = new URI(HttpConfigUtil.scheme, HttpConfigUtil.url, "/address/query", null);
             post = new HttpPost(uri);
-            byteArrayEntity = DataTransferUtil.userAddressPageRequest(userAddressInfo.getChannelUserId(),channelId,1,1);
+           //byteArrayEntity = DataTransferUtil.userAddressPageRequest(userAddressInfo.getChannelUserId(),channelId,1,1);
             post.setEntity(byteArrayEntity);
             post.setHeader("Content-Type", "application/x-protobuf");
             response = httpClient.execute(post);
